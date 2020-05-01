@@ -4,7 +4,7 @@ import moment from 'moment';
 import '@fortawesome/fontawesome-free-webfonts';
 import '@fortawesome/fontawesome-free-webfonts/css/fa-solid.css';
 
-const apiKey = 'YP6GQNd3910VPWDKzJGzsPUzqyJ5GCcc';
+const apiKey = 'Your API Key';
 let query = '';
 let beginDate = new Date().toJSON().slice(0, 10).replace(/-/g, '');
 let endDate = new Date().toJSON().slice(0, 10).replace(/-/g, '');
