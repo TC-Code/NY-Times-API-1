@@ -1,0 +1,22 @@
+{
+  "name": "thecoddingtrain_nweyork_times",
+  "version": "1.0.0",
+  "description": "New York Times API",
+  "main": "index.js",
+  "scripts": {
+    "start": "parcel index.html"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@fortawesome/fontawesome-free-webfonts": "^1.0.9",
+    "daterangepicker": "^3.0.5",
+    "font-awesome": "^4.7.0",
+    "jquery": "^3.5.0",
+    "moment": "^2.24.0"
+  },
+  "browserslist": "last 1 chrome versions",
+  "devDependencies": {
+    "parcel-bundler": "^1.12.4"
+  }
+}
