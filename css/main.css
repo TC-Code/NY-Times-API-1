@@ -1,8 +1,9 @@
-body {
+* {
   box-sizing: border-box;
   padding: 0;
   margin: 0;
   font-family: 'Roboto', sans-serif;
+  list-style: none;
 }
 
 /* Header */
@@ -16,7 +17,7 @@ body {
   position: relative;
 }
 
-input {
+input[name='search'] {
   display: block;
   width: 50vw;
   margin: 10vh auto;
@@ -43,14 +44,44 @@ button.search {
   color: #757575;
 }
 
-#reportrange {
-  width: 25vw;
+/* Search filters */
+.search-filters {
   margin: 0 auto;
-  text-align: center;
   padding: 5px 10px;
-  border: 1px solid #ccc;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  width: 40vw;
+}
+
+#reportrange {
+  text-align: center;
   background: #fff;
   cursor: pointer;
+}
+
+.article-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+dl a {
+  text-decoration: none;
+  color: black;
+}
+
+.multi-select ul li label,
+.multi-select ul li input {
+  cursor: pointer;
+}
+
+.multi-select {
+  display: none;
+  cursor: pointer;
+}
+.multi-select-active {
+  display: block;
+  position: absolute;
 }
 
 /* Main */

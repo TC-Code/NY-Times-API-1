@@ -4,8 +4,10 @@ import moment from 'moment';
 import '@fortawesome/fontawesome-free-webfonts';
 import '@fortawesome/fontawesome-free-webfonts/css/fa-solid.css';
 
-const apiKey = 'Your API Key';
+const apiKey = //Your API Key
+const defaultQuery = 'New York';
 let query = '';
+let sectionName = ['New York'];
 let beginDate = new Date().toJSON().slice(0, 10).replace(/-/g, '');
 let endDate = new Date().toJSON().slice(0, 10).replace(/-/g, '');
 
@@ -16,13 +18,14 @@ const main = document.querySelector('main');
 
 async function getData() {
   const response = await fetch(
-    `${urlNYT}?q=${query}&begin_date=${beginDate}&end_date=${endDate}&api-key=${apiKey}`,
+    `${urlNYT}?q=${query}&fq=section_name.contains:(${sectionName})&begin_date=${beginDate}&end_date=${endDate}&api-key=${apiKey}`,
     {
       headers: {
         Accept: 'application/json',
       },
     }
   );
+  console.log(response);
 
   const data = await response.json();
   const articles = data.response.docs;
@@ -119,15 +122,45 @@ function updateSearching() {
   $('#reportrange').on('apply.daterangepicker', function (ev, picker) {
     beginDate = picker.startDate.format('YYYY-MM-DD');
     endDate = picker.endDate.format('YYYY-MM-DD');
-    if (inputSearch.value) {
+    if (inputSearch.value === '') {
+      query = defaultQuery;
+    } else {
       query = inputSearch.value;
-      clearOutput();
-      spinnerStart();
-      getData();
     }
+    clearOutput();
+    spinnerStart();
+    getData();
   });
 }
 updateSearching();
+
+// Article section select
+
+const selectList = document.querySelector('.multi-select');
+const dropdown = document.querySelector('.dropdown dt:first-of-type');
+
+dropdown.addEventListener('click', () => {
+  selectList.classList.toggle('multi-select-active');
+});
+
+const multiSelectInputs = [
+  ...document.querySelectorAll('input[name=checkbox]'),
+];
+
+multiSelectInputs.map((checkedEl) => {
+  checkedEl.addEventListener('change', (e) => {
+    if (checkedEl.checked && !sectionName.includes(checkedEl.value)) {
+      sectionName.push(checkedEl.value);
+    } else {
+      sectionName = sectionName.filter((item) => item !== e.target.value);
+    }
+    clearOutput();
+    spinnerStart();
+    getData();
+    changeSearchDateInfo();
+  });
+});
+
 // Cleaning search result
 
 function clearOutput() {
@@ -147,7 +180,15 @@ function spinnerStop() {
 function changeSearchDateInfo() {
   const htmlSearchInfo = `
   <h4 class="searchInfo">
-  No results. Please change the date range.</4>
+  No results. Please change the date range or section.</4>
+  `;
+  main.insertAdjacentHTML('afterbegin', htmlSearchInfo);
+}
+
+function changeSearchDateInfo() {
+  const htmlSearchInfo = `
+  <h4 class="searchInfo">
+  No results. Please select the section.</4>
   `;
   main.insertAdjacentHTML('afterbegin', htmlSearchInfo);
 }

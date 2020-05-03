@@ -37,9 +37,66 @@
           </button>
         </div>
 
-        <div id="reportrange">
-          <i class="fa fa-calendar"></i>&nbsp; <span></span>
-          <i class="fa fa-caret-down" aria-label="Submit Search"></i>
+        <div class="search-filters">
+          <div id="reportrange">
+            <i class="fa fa-calendar"></i>&nbsp; <span></span>
+            <i class="fa fa-caret-down" aria-label="Submit Search"></i>
+          </div>
+          <dl class="article-section dropdown">
+            <dt>
+              <a href="#">
+                <span>Section</span>
+                <i class="fa fa-caret-down" aria-label="Submit Search"></i>
+              </a>
+            </dt>
+            <dd>
+              <div class="multi-select">
+                <ul>
+                  <li>
+                    <input
+                      id="new-york"
+                      class="multi-select_input"
+                      type="checkbox"
+                      name="checkbox"
+                      value="New York"
+                      checked
+                    />
+                    <label for="new-york">New York</label>
+                  </li>
+                  <li>
+                    <input
+                      id="world"
+                      class="multi-select_input"
+                      type="checkbox"
+                      name="checkbox"
+                      value="World"
+                    />
+                    <label for="world">World</label>
+                  </li>
+                  <li>
+                    <input
+                      id="opinion"
+                      class="multi-select_input"
+                      type="checkbox"
+                      name="checkbox"
+                      value="Opinion"
+                    />
+                    <label for="opinion">Opinion</label>
+                  </li>
+                  <li>
+                    <input
+                      id="technology"
+                      class="multi-select_input"
+                      type="checkbox"
+                      name="checkbox"
+                      value="Technology"
+                    />
+                    <label for="technology">Technology</label>
+                  </li>
+                </ul>
+              </div>
+            </dd>
+          </dl>
         </div>
       </header>
       <div class="output">
