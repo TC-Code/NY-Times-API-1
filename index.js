@@ -4,7 +4,7 @@ import moment from 'moment';
 import '@fortawesome/fontawesome-free-webfonts';
 import '@fortawesome/fontawesome-free-webfonts/css/fa-solid.css';
 
-const apiKey = //Your API Key
+const apiKey = ; //Your API Key
 const defaultQuery = 'New York';
 let query = '';
 let sectionName = ['New York'];
@@ -25,11 +25,9 @@ async function getData() {
       },
     }
   );
-  console.log(response);
 
   const data = await response.json();
   const articles = data.response.docs;
-  console.log(articles);
 
   if (articles) {
     spinnerStop();
@@ -41,27 +39,27 @@ async function getData() {
   articles.forEach((article) => {
     const articleHtml = `
     <article>
-    <img src='${
-      article.multimedia.length > 0
-        ? 'https://static01.nyt.com/' + article.multimedia[0].url
-        : ''
-    }
-    ' >
-      <h1>${article.headline.main}</h1>
-      <h4>${article.byline.original}</h2>
-      <h6>${article.pub_date.slice(0, 10)}</6>
-      <p>${article.lead_paragraph}</p>
-      <a href=${article.web_url} target="_blank">Read article</a>
+      <div class='article-img'>
+       <img src=${
+         article.multimedia.length > 0
+           ? 'https://static01.nyt.com/' + article.multimedia[0].url
+           : 'nytimes-logo.985afc14.png'
+         //  '/images/nytimes-logo.png.png'
+       } alt="Article image">
+      </div>
+      <div class='article-content'>
+        <h2>${article.headline.main}</h2>
+        <h6>${article.pub_date.slice(0, 10)} | ${article.byline.original}</h6>
+        <p>${article.lead_paragraph}</p>
+        <a href=${article.web_url} target="_blank">Read article</a>
+      </div>
     </article>
     `;
     main.insertAdjacentHTML('afterbegin', articleHtml);
   });
-
-  const articleImg = [...document.querySelectorAll('article img')];
 }
 
 // Date Range Picker
-
 $(function () {
   let start = moment().subtract(0, 'days');
   let end = moment();
@@ -100,7 +98,6 @@ inputSearch.addEventListener('keyup', (e) => {
   e.preventDefault();
   if (e.key === 'Enter') {
     query = e.target.value;
-
     clearOutput();
     spinnerStart();
     getData();
@@ -111,7 +108,6 @@ inputSearch.addEventListener('keyup', (e) => {
 const searchBtn = document.querySelector('.search');
 searchBtn.addEventListener('click', () => {
   query = inputSearch.value;
-
   clearOutput();
   spinnerStart();
   getData();
@@ -135,7 +131,6 @@ function updateSearching() {
 updateSearching();
 
 // Article section select
-
 const selectList = document.querySelector('.multi-select');
 const dropdown = document.querySelector('.dropdown dt:first-of-type');
 
@@ -157,12 +152,10 @@ multiSelectInputs.map((checkedEl) => {
     clearOutput();
     spinnerStart();
     getData();
-    changeSearchDateInfo();
   });
 });
 
 // Cleaning search result
-
 function clearOutput() {
   main.innerHTML = '';
 }
@@ -177,18 +170,11 @@ function spinnerStop() {
   spinner.classList.remove('active');
 }
 
+// No search results information
 function changeSearchDateInfo() {
   const htmlSearchInfo = `
   <h4 class="searchInfo">
   No results. Please change the date range or section.</4>
-  `;
-  main.insertAdjacentHTML('afterbegin', htmlSearchInfo);
-}
-
-function changeSearchDateInfo() {
-  const htmlSearchInfo = `
-  <h4 class="searchInfo">
-  No results. Please select the section.</4>
   `;
   main.insertAdjacentHTML('afterbegin', htmlSearchInfo);
 }

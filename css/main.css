@@ -6,8 +6,26 @@
   list-style: none;
 }
 
+body {
+  min-height: 100%;
+  margin: 0;
+}
+
+/* Main Grid */
+.container {
+  display: grid;
+  grid-template-areas:
+    'header'
+    'content'
+    'footer';
+}
 /* Header */
+header {
+  margin-bottom: 50px;
+}
+
 .banner {
+  position: f;
   display: block;
   width: 40vw;
   margin: 0 auto;
@@ -25,7 +43,7 @@ input[name='search'] {
   padding: 5px 10px;
   outline: none;
   border: none;
-  border-bottom: 1px solid #ccc;
+  border-bottom: 1px solid rgb(204, 204, 204);
 }
 
 button.search {
@@ -82,20 +100,65 @@ dl a {
 .multi-select-active {
   display: block;
   position: absolute;
+  background-color: rgb(255, 255, 255);
 }
 
 /* Main */
 main {
   width: 60vw;
+  min-height: calc(100vh - 460px);
   margin: 0 auto;
   display: grid;
   grid-template-columns: 1fr;
 }
 
-main article {
-  padding: 25px;
+main .nyt-logo {
+  margin: 0 auto;
+  width: 20%;
+  display: none;
 }
+
+main article {
+  display: grid;
+  grid-template-columns: 30% auto;
+  padding: 25px;
+  border-bottom: 0.7px solid rgb(204, 204, 204);
+}
+main article img {
+  width: 100%;
+}
+
+main article .article-img {
+  padding-right: 10px;
+}
+
+main article .article-content {
+  padding-left: 10px;
+}
+
+main article .article-content :nth-child(3) {
+  padding-top: 10px;
+}
+
+main article .article-content a {
+  color: rgb(0, 0, 0, 0.5);
+  text-decoration: none;
+  font-size: 0.7rem;
+}
+
 .searchInfo {
   color: rgb(117, 117, 117);
   text-align: center;
+}
+
+/* Footer */
+footer {
+  margin-top: 50px;
+  text-align: center;
+  color: rgb(204, 204, 204);
+}
+
+footer p {
+  padding: 5px 5px;
+  font-size: 0.7rem;
 }
