@@ -7,8 +7,9 @@
 }
 
 body {
+  max-width: 1200px;
   min-height: 100%;
-  margin: 0;
+  margin: 0 auto;
 }
 
 /* Main Grid */
@@ -25,19 +26,20 @@ header {
 }
 
 .banner {
-  position: f;
   display: block;
-  width: 40vw;
+  width: 70%;
   margin: 0 auto;
 }
 
 .searchBox {
   position: relative;
+  width: 50%;
+  margin: 0 auto;
 }
 
 input[name='search'] {
   display: block;
-  width: 50vw;
+  width: 100%;
   margin: 10vh auto;
   font-size: 2rem;
   padding: 5px 10px;
@@ -49,7 +51,7 @@ input[name='search'] {
 button.search {
   position: absolute;
   top: 0;
-  right: 25vw;
+  right: 0;
   width: 3rem;
   height: 3rem;
   border: none;
@@ -64,11 +66,11 @@ button.search {
 
 /* Search filters */
 .search-filters {
-  margin: 0 auto;
+  margin: -50px auto 0;
   padding: 5px 10px;
   display: grid;
   grid-template-columns: 1fr 1fr;
-  width: 40vw;
+  width: 50vw;
 }
 
 #reportrange {
@@ -106,7 +108,6 @@ dl a {
 /* Main */
 main {
   width: 60vw;
-  min-height: calc(100vh - 460px);
   margin: 0 auto;
   display: grid;
   grid-template-columns: 1fr;
@@ -120,20 +121,13 @@ main .nyt-logo {
 
 main article {
   display: grid;
-  grid-template-columns: 30% auto;
-  padding: 25px;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 20px;
   border-bottom: 0.7px solid rgb(204, 204, 204);
+  padding: 20px;
 }
 main article img {
   width: 100%;
-}
-
-main article .article-img {
-  padding-right: 10px;
-}
-
-main article .article-content {
-  padding-left: 10px;
 }
 
 main article .article-content :nth-child(3) {
@@ -153,12 +147,83 @@ main article .article-content a {
 
 /* Footer */
 footer {
+  position: fixed;
+  bottom: 0;
+  left: 50%;
+  transform: translate(-50%);
   margin-top: 50px;
   text-align: center;
-  color: rgb(204, 204, 204);
+  color: rgb(85, 85, 85);
+  background-color: rgba(0, 0, 0, 0.3);
 }
 
 footer p {
-  padding: 5px 5px;
+  width: 100vw;
+  padding: 5px 10px;
   font-size: 0.7rem;
+}
+
+/* Media Queries */
+
+@media (min-width: 320px) {
+  .banner {
+    padding-top: 30px;
+    width: 100%;
+  }
+  .searchBox {
+    width: 75%;
+  }
+  input[name='search'] {
+    font-size: 1.5rem;
+  }
+  button.search {
+    top: -5px;
+    right: -5px;
+  }
+  main {
+    width: 90vw;
+  }
+}
+
+@media (min-width: 533px) {
+  main {
+    width: 65vw;
+  }
+}
+@media (max-width: 812px) and (orientation: portrait) {
+  .search-filters {
+    width: 90%;
+    display: flex;
+    flex-direction: column;
+  }
+  .article-section {
+    margin-top: 20px;
+  }
+}
+
+@media (max-width: 812px) and (orientation: landscape) {
+  .search-filters {
+    margin-top: 20px;
+    width: 90%;
+    display: flex;
+    flex-direction: column;
+  }
+  .article-section {
+    margin-top: 20px;
+  }
+  footer {
+    margin-top: 80px;
+  }
+}
+
+@media (min-width: 768px) {
+  main {
+    width: 80vw;
+  }
+}
+
+@media (min-width: 992px) {
+  main {
+    width: 60vw;
+  }
 }

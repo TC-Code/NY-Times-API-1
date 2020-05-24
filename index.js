@@ -4,7 +4,7 @@ import moment from 'moment';
 import '@fortawesome/fontawesome-free-webfonts';
 import '@fortawesome/fontawesome-free-webfonts/css/fa-solid.css';
 
-const apiKey = ; //Your API Key
+const apiKey = ''; //Your API Key
 const defaultQuery = 'New York';
 let query = '';
 let sectionName = ['New York'];
@@ -74,6 +74,7 @@ $(function () {
     {
       startDate: start,
       endDate: end,
+      opens: 'center',
       ranges: {
         Today: [moment(), moment()],
         Yesterday: [moment().subtract(1, 'days'), moment().subtract(1, 'days')],
